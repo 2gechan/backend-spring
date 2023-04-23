@@ -3,14 +3,18 @@ package gechan.core.service;
 import gechan.core.domain.Member;
 import gechan.core.repository.MemberRepository;
 import gechan.core.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service // @Component를 내장하고 있음, 그렇기 때문에 컴포넌트 스캔이 가능
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
