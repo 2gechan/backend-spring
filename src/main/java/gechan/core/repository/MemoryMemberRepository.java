@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository // @Component를 내장하고 있음, 그렇기 때문에 컴포넌트 스캔이 가능
+//@Repository // @Component를 내장하고 있음, 그렇기 때문에 컴포넌트 스캔이 가능
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
