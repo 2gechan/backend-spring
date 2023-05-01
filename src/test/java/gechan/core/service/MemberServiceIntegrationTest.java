@@ -3,38 +3,29 @@ package gechan.core.service;
 import gechan.core.domain.Member;
 import gechan.core.repository.MemberRepository;
 import gechan.core.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+// Spring 컨테이너를 사용하여 테스트하는 것을 보통 통합테스트라고 한다.
+// 단위테스트보다 시간이 오래걸린다.
+@SpringBootTest // 스프링 컨테이너와 테스트를 함께 실행
+@Transactional // Test 완료 후 항상 롤백한다. 이렇게 하면 db에 데이터가 남지 않으므로 다음 테스트에 영향을 주지 않는다.
+class MemberServiceIntegrationTest {
 
-// Spring 컨테이너 없이 순수한 자바코드로만 테스트를 실행하는 것을 단위테스트라고 한다.
-// Spring 컨테이너 없이 테스트 하기 때문에 테스트 속도가 비교적 빠르다.
-class MemberServiceTest {
-
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
-
-    @BeforeEach
-    public void beforeEach() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-
-    @AfterEach
-    public void afterEach() {
-        memberRepository.clearStore();
-    }
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
     @Test
     void join() {
         Member member = new Member();
-        member.setName("hello");
+        member.setName("spring");
 
         Long saveId = memberService.join(member);
 
@@ -67,11 +58,4 @@ class MemberServiceTest {
         // then
     }
 
-    @Test
-    void findMember() {
-    }
-
-    @Test
-    void findOne() {
-    }
 }
