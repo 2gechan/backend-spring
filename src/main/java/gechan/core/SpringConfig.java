@@ -1,6 +1,7 @@
 package gechan.core;
 
 import gechan.core.repository.JdbcMemberRepository;
+import gechan.core.repository.JdbcTemplateMemberRepository;
 import gechan.core.repository.MemberRepository;
 import gechan.core.repository.MemoryMemberRepository;
 import gechan.core.service.MemberService;
@@ -31,6 +32,7 @@ public class SpringConfig {
     public MemberRepository memberRepository() {
 
 //        return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+//        return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
