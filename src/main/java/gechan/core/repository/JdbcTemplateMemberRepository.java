@@ -54,7 +54,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         return jdbcTemplate.query("select * from member", memberRowMapper());
     }
 
-    // jdbcTemplate로 query를 전송하고 그 결과를 rs로 반환
+    // jdbcTemplate로 query를 전송하고 그 결과ff를 rs로 반환
     // memberRowMapper()로 받아 객체를 생성
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
